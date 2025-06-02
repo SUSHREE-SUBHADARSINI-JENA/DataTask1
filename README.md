@@ -1,78 +1,73 @@
-
-
 ````markdown
 # Task 1 – Data Cleaning and Preprocessing
 
-## 📌 Internship: Data Analyst – Task 1
+## 🧠 Dataset: Personality Traits & Social Behavior
 
 ### 🎯 Objective
-To clean and preprocess a large transactional dataset by handling missing values, eliminating duplicates, standardizing formats, and preparing it for further analysis or modeling.
+To clean and preprocess a personality traits dataset by addressing missing values, removing duplicates, standardizing column names, and preparing the data for analysis.
 
 ---
 
-## 📂 Dataset Description
+## 📂 Dataset Overview
 
-- **Dataset Name:** Financial Transactions Dataset
-- **Records:** 5,000,000
-- **Features:** 18 columns including timestamps, account details, transaction type, fraud flags, etc.
-- **Source:** Local CSV file
+- **Filename:** `personality_dataset.csv`
+- **Records:** 2,900 rows
+- **Columns:** 8
+- **Features Include:**
+  - Time spent alone
+  - Stage fear
+  - Social event attendance
+  - Going outside
+  - Drained after socializing
+  - Friends circle size
+  - Social media post frequency
+  - Personality type (Introvert/Extrovert)
 
 ---
 
-## 🛠 Tools & Libraries Used
+## 🛠 Tools Used
 
 - Python 3.13
-- Pandas
+- Pandas library
 
 ---
 
 ## ⚙️ Steps Performed
 
-### 1. Loaded the Dataset
+### 1. **Loaded the Dataset**
 ```python
-df = pd.read_csv('your_dataset.csv')
+df = pd.read_csv('personality_dataset.csv')
 ````
 
-### 2. Explored the Data
+### 2. **Checked Data Structure and Missing Values**
 
-* Previewed the top records using `df.head()`
-* Checked the structure using `df.info()`
-* Identified missing values using `df.isnull().sum()`
+* Used `df.info()` and `df.isnull().sum()` to inspect the data
+* Found missing values in several columns (63–77 rows missing in different columns)
 
-### 3. Handled Missing Values
+### 3. **Handled Missing Values**
 
-* `fraud_type`: Filled with `'Unknown'`
-* `time_since_last_transaction`: Filled with median value to retain data
+* Dropped rows with missing values using `df.dropna()`
 
-```python
-df['fraud_type'] = df['fraud_type'].fillna('Unknown')
-df['time_since_last_transaction'] = df['time_since_last_transaction'].fillna(df['time_since_last_transaction'].median())
-```
+  > *Note: You can also fill missing values using `fillna()` if you want to preserve more data.*
 
-### 4. Removed Duplicates
+### 4. **Removed Duplicates**
 
 ```python
 df = df.drop_duplicates()
 ```
 
-### 5. Standardized Date Format
+### 5. **Renamed Columns**
 
-Converted the `timestamp` column to consistent `datetime` format:
+* Standardized all column names by:
 
-```python
-df['timestamp'] = pd.to_datetime(df['timestamp'], errors='coerce')
-```
-
-### 6. Renamed Columns
-
-* Converted all column names to lowercase
-* Replaced spaces with underscores
+  * Converting to lowercase
+  * Replacing spaces with underscores
 
 ```python
 df.columns = df.columns.str.lower().str.replace(' ', '_')
 ```
 
-### 7. Exported the Cleaned Dataset
+### 6. **Exported the Cleaned Dataset**
 
 ```python
 df.to_csv('cleaned_dataset.csv', index=False)
@@ -80,19 +75,21 @@ df.to_csv('cleaned_dataset.csv', index=False)
 
 ---
 
-## ✅ Output
+## ✅ Output Files
 
-* `cleaned_dataset.csv`: Cleaned and ready-to-use dataset
-* `index.py`: Python script used to perform all cleaning operations
-* `README.md`: Summary of work completed
+* `cleaned_dataset.csv` – The cleaned dataset
+* `index.py` – Python script with data cleaning steps
+* `README.md` – Task summary and documentation
 
 ---
 
-## 📁 Folder Structure
+## 📁 Project Structure
 
 ```
-task-1-data-cleaning/
-├── your_dataset.csv
+task-1-personality-cleaning/
+├── personality_dataset.csv
 ├── cleaned_dataset.csv
 ├── index.py
 └── README.md
+```
+
