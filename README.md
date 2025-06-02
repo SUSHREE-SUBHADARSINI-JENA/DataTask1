@@ -1,6 +1,4 @@
-Great! Here's a **customized `README.md`** based on your actual dataset and what you’ve done so far (as seen from your PowerShell log):
 
----
 
 ````markdown
 # Task 1 – Data Cleaning and Preprocessing
